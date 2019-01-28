@@ -5,7 +5,6 @@
 # http://jupyter-client.readthedocs.io/en/stable/wrapperkernels.html
 
 from ipykernel.kernelbase import Kernel
-import spadkernel.spadtex
 import spadkernel.spadcmd
 import requests
 import json
@@ -76,8 +75,7 @@ class SPAD(Kernel):
             if ff['tex']=='true':
                 tex = self.server.output['tex']
                 typ = self.server.output['spad-type']
-                #data['text/latex'] = spadkernel.spadtex.makeTeX(tex)
-                data['text/latex'] = spadkernel.spadtex.makeTeXType(tex,typ)
+                data['text/latex'] = tex + typ
             if ff['html']=='true':
                 data['text/html'] = self.server.output['html']
             if ff['mathml']=='true':

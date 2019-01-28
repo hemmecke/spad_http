@@ -5,7 +5,6 @@
 # http://jupyter-client.readthedocs.io/en/stable/wrapperkernels.html
 
 from ipykernel.kernelbase import Kernel
-#import spadkernel.spadtex
 #import spadkernel.spadcmd
 import requests
 import json
@@ -17,7 +16,6 @@ dir_path = os.path.dirname(path)
 
 
 spadcmd = imp.load_source('spadcmd', dir_path + '/spadcmd.py')
-spadtex = imp.load_source('spadtex', dir_path + '/spadtex.py')
 
 __version__ = '0.1.1'
 
@@ -79,8 +77,7 @@ class SPAD(Kernel):
             if ff['tex']=='true':
                 tex = self.server.output['tex']
                 typ = self.server.output['spad-type']
-                #-patch
-                data['text/latex'] = spadtex.makeTeXType(tex,typ)
+                data['text/latex'] = tex + typ
             if ff['html']=='true':
                 data['text/html'] = self.server.output['html']
             if ff['mathml']=='true':

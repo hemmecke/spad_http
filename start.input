@@ -1,2 +1,7 @@
 )lisp (load "setup")
 )lisp (ql:quickload :webSPAD)
+)lib OPHANDL
+)lib TEX
+setDefault!([""], [""])$TexFormat
+)lisp (setf |$ioHook| (lambda (x &optional args) (cond ((eq x '|startTeXOutput|) (SAY "$${\\color{black}\\normalsize")) ((eq x '|endOfTeXOutput|) (SAY "}$$")) ((eq x '|startKeyedMsg|) (SAY "$${\\color{blue}\\scriptsize")) ((eq x '|endOfKeyedMsg|) (SAY "}$$")) ((eq x '|startSysCmd|) (SAY "\\begin{SysCmd}")) ((eq x '|endSysCmd|) (SAY "\\end{SysCmd}")) ((eq x '|startPatternMsg|) (SAY "\\begin{PatternMsg}")) ((eq x '|endPatternMsg|) (SAY "\\end{PatternMsg}")))))
+)set output tex on
